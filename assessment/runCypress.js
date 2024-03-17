@@ -3,9 +3,9 @@ const fs = require('fs');
 const { execSync } = require('child_process');
 require('dotenv').config();
 console.log(process.env.USER_LINK_SUBMISSION)
-// Replace 'http://localhost:3000/' with the actual URL
+// Replace 'https://example.com' with the actual URL
 const fileContent = fs.readFileSync('./cypress/e2e/spec.cy.js', 'utf8');
-const updatedContent = fileContent.replaceAll('http://localhost:3000/', process.env.USER_LINK_SUBMISSION);
+const updatedContent = fileContent.replace(/https?:\/\/\S+/g, process.env.USER_LINK_SUBMISSION+"')");
 fs.writeFileSync('./cypress/e2e/spec.cy.js', updatedContent);
 
 // Run Cypress tests
