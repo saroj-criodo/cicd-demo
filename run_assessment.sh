@@ -4,18 +4,18 @@ set -e
  
  
 # Read the first line starting with http from submit.txt
-USER_LINK_SUBMISSION=$(grep -m 1 '^http' submit.txt)
- 
-# Check if USER_LINK_SUBMISSION is non-empty
-if [ -z "$USER_LINK_SUBMISSION" ]; then
-    echo "No URL found in submit.txt"
-    exit 1
-fi
- 
+#USER_LINK_SUBMISSION=$(grep -m 1 '^http' submit.txt)
+# 
+## Check if USER_LINK_SUBMISSION is non-empty
+#if [ -z "$USER_LINK_SUBMISSION" ]; then
+#    echo "No URL found in submit.txt"
+#    exit 1
+#fi
+# 
 cd assessment
 rm -rf node_modules
-# Update or create .env with USER_LINK_SUBMISSION
-echo "USER_LINK_SUBMISSION=$USER_LINK_SUBMISSION" > .env
+## Update or create .env with USER_LINK_SUBMISSION
+#echo "USER_LINK_SUBMISSION=$USER_LINK_SUBMISSION" > .env
  
  
 # Check if dotenv is installed, otherwise install it

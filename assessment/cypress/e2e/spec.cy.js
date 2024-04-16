@@ -1,7 +1,7 @@
 describe('xCruise Landing Page Tests', () => {
   beforeEach(() => {
     // Visit the xCruise home page before each test
-    cy.visit('http://localhost:3000/') // Replace with the actual URL
+    cy.visit('http://localhost:8081') // Replace with the actual URL
   });
 
   it('Navigation Bar - should display the xCruise logo', () => {
