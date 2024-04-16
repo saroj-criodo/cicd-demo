@@ -1,7 +1,7 @@
 image: cypress/browsers:node-20.12.0-chrome-123.0.6312.86-1-ff-124.0.2-edge-123.0.2420.65-1
 
 stages:
-  - test
+  - test & deploy
   - deploy
 
 variables:
@@ -14,20 +14,12 @@ cache:
     - assessment/node_modules/
 
 run_tests:
-  stage: test
+  stage: test & deploy
   script:
     - apt-get update && apt-get install -y lsof
     - chmod +x ./run_assessment.sh ./serve.sh
     - ./serve.sh start
     - ./run_assessment.sh
-  only:
-    - master
-
-deploy_site:
-  stage: deploy
-  image: alpine:latest
-  script:
-    - echo "Deploying to production server"
   only:
     - master
   when: on_success
