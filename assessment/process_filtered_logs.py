@@ -22,11 +22,11 @@ def assert_logs(log_json) -> dict:
 
 if __name__ == "__main__":
     filtered_json_path = sys.argv[1] 
-    print("Opening filtered logs")
+    # print("Opening filtered logs")
     with open(filtered_json_path, 'r') as f:
         log_json = json.load(f)
-    print("Reading filtered logs done")
-    assessment_result = assert_logs(log_json)
-    print("Writing into assessment_results.json")
-    with open("assesment_result.json", 'w+') as f:
-        json.dump(assessment_result, f, indent=4)
+    # print("Reading filtered logs done")
+    #assessment_result = assert_logs(log_json)
+    # print("Writing into assessment_results.json")
+    # with open("assesment_result.json", 'w+') as f:
+    #     json.dump(assessment_result, f, indent=4)

@@ -1,2 +1,5 @@
 assessment/node_modules/
 nohup.out
+assessment/cypress/screenshots/
+assessment/package-lock.json
+assessment/cypressResults.json
