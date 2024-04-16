@@ -16,6 +16,7 @@ cache:
 run_tests:
   stage: test
   script:
+    - apt-get update && apt-get install -y lsof
     - chmod +x ./run_assessment.sh ./serve.sh
     - ./serve.sh start
     - ./run_assessment.sh
