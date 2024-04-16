@@ -1,0 +1,28 @@
+image: cypress/browsers:node-20.12.0-chrome-123.0.6312.86-1-ff-124.0.2-edge-123.0.2420.65-1
+
+stages:
+  - test & deploy
+  - deploy
+
+variables:
+  CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/cache/Cypress"
+
+cache:
+  paths:
+    - node_modules/
+    - cache/Cypress
+    - assessment/node_modules/
+
+run_tests:
+  stage: test & deploy
+  script:
+    - apt-get update && apt-get install -y lsof
+    - chmod +x ./run_assessment.sh ./serve.sh
+    - ./serve.sh start
+    - ./run_assessment.sh
+  artifacts:
+    paths:
+    - public
+  only:
+    - master
+  when: on_success
