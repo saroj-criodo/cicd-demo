@@ -1,0 +1,44 @@
+name: CI and Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - master  # Adjust this as per your main branch
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'  # Specify the Node.js version required by your project
+
+    - name: Cache Node modules
+      uses: actions/cache@v2
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Start Server and Run Cypress Tests
+      run: |
+        ./serve.sh start
+        ./run_assessment.sh
+      env:
+        CI: true
+
+    - name: Deploy to GitHub Pages
+      if: success()  # Only deploy if all previous steps have been successful
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./public
