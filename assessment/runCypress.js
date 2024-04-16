@@ -11,6 +11,10 @@ fs.writeFileSync('./cypress/e2e/spec.cy.js', updatedContent);
 // Run Cypress tests
 cypress.run().then((results) => {
   fs.writeFileSync('cypressResults.json', JSON.stringify(results, null, 2));
+  if (results.totalFailed > 0) {
+    process.exit(1); // Exit with code 1 for failure
+  }
 }).catch((err) => {
   console.error(err);
+  process.exit(1)
 });

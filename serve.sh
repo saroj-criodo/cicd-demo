@@ -9,6 +9,7 @@ start_server() {
     fi
 
     # Start Python HTTP server in the background, redirecting all output to /dev/null
+    cd public
     nohup python3 -m http.server 8081 &>/dev/null &
     echo "Server started on port 8081"
 }
